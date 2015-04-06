@@ -6,22 +6,6 @@
 	<artifactId>StreakIntegrationAPI</artifactId>
 
 	<dependencies>
-		<!-- <dependency> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-assembly-plugin</artifactId> 
-			<version>2.5.3</version> </dependency> http components <dependency> <groupId>org.apache.httpcomponents</groupId> 
-			<artifactId>httpclient</artifactId> <version>4.4</version> <scope>runtime</scope> 
-			</dependency> http core <dependency> <groupId>org.apache.httpcomponents</groupId> 
-			<artifactId>httpcore</artifactId> <version>4.4</version> <scope>runtime</scope> 
-			</dependency> jackson annotations <dependency> <groupId>com.fasterxml.jackson.core</groupId> 
-			<artifactId>jackson-annotations</artifactId> <version>2.5.1</version> <scope>runtime</scope> 
-			</dependency> jackson core <dependency> <groupId>com.fasterxml.jackson.core</groupId> 
-			<artifactId>jackson-core</artifactId> <version>2.5.1</version> <scope>runtime</scope> 
-			</dependency> jackson databind required for 'JavaType' and 'ObjectMapper' 
-			objects <dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-databind</artifactId> 
-			<version>2.5.1</version> <scope>runtime</scope> </dependency> powermock with 
-			junit4 <dependency> <groupId>org.powermock</groupId> <artifactId>powermock-module-junit4</artifactId> 
-			<version>1.6.1</version> <scope>test</scope> </dependency> powermock with 
-			mockito <dependency> <groupId>org.powermock</groupId> <artifactId>powermock-api-mockito</artifactId> 
-			<version>1.6.1</version> <scope>test</scope> </dependency> -->
 		<dependency>
 			<groupId>StreakAPI</groupId>
 			<artifactId>ccom.streakapi.crm</artifactId>
