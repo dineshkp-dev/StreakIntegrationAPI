@@ -2,6 +2,7 @@ package com.koreinfotech.sms.streakintegration.api;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ public class IStreakIntegrationAPI {
 		Stages stagesMap = null;
 		List<String> stageOrder = new ArrayList<String>();
 		ArrayList<Stage> stageList = new ArrayList<Stage>();
+		Map<String, String> stageMap = new HashMap<String, String>();
 		
 		//Boxes
 		List<Box> boxList = null;
@@ -68,7 +70,8 @@ public class IStreakIntegrationAPI {
 			int numOfStages = stageOrder.size();
 			for (int i=0; i<numOfStages; i++) {
 				stageList.add(i, allStages.get(stageOrder.get(i)));
-				System.out.println("Item [" +i+"] of StageList: " + stageList.get(i));
+				stageMap.put(stageList.get(i).getKey(), stageList.get(i).getName());
+				System.out.println("Item [" + i +"] of StageList: " + stageList.get(i));
 				System.out.println("----------");
 			}
 			System.out.println("**********************");
@@ -93,6 +96,9 @@ public class IStreakIntegrationAPI {
 				System.out.println("Box Last-updated time: " + box.getLastUpdatedTimestamp().getTime());
 				System.out.println("Box Fields: " + box.getFields());
 				System.out.println("Box Notes: " + box.getNotes());
+				System.out.println("Box Stage Key: " + box.getStageKey());
+				System.out.println("Box Stage Name: " + stageMap.get(box.getStageKey()));
+				System.out.println("----------");
 			}
 			
 			
