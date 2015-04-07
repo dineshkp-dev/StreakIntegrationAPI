@@ -1,19 +1,101 @@
 package com.koreinfotech.sms.streakintegration.api;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import com.streakapi.crm.api.IStreakAPI;
 import com.streakapi.crm.datatype.Box;
+import com.streakapi.crm.datatype.Field;
+import com.streakapi.crm.datatype.Pipeline;
+import com.streakapi.crm.datatype.Stage;
+import com.streakapi.crm.datatype.Stages;
 import com.streakapi.crm.exceptions.NoValidObjectsReturned;
 import com.streakapi.crm.impl.StreakAPIImpl;
 
 public class IStreakIntegrationAPI {
+
 	public static void main(String[] args){
 		String streakKey = "";
+		String pipelineKey = "";
+		String boxKey = "";
+		
+		//Pipelines
+		List<Pipeline> pipeList = null;
+		Pipeline pipeLine = null;
+		List<Field> fields = null;
+		Stages stagesMap = null;
+		List<String> stageOrder = new ArrayList<String>();
+		ArrayList<Stage> stageList = new ArrayList<Stage>();
+		
+		//Boxes
+		List<Box> boxList = null;
+		
 		IStreakAPI streakAPI = new StreakAPIImpl(streakKey);
 		try {
-			List<Box> boxList = streakAPI.getAllBoxes();
-			System.out.println("Number of Boxes: " + boxList.size());
+			
+			System.out.println("\t**********************");
+			System.out.println("\t GETTING DATA FROM PIPELINE(S)");
+			System.out.println("\t**********************");
+			
+			
+			pipeList = streakAPI.getAllPipelines();
+			System.out.println("Number of Pipelines: " + pipeList.size());
+			
+			pipeLine = streakAPI.getPipeline(pipelineKey);
+			fields = pipeLine.getFields();
+			stagesMap = pipeLine.getStages();
+			Map<String, Stage> allStages = stagesMap.getAllStages();
+			
+			System.out.println("Printing all the field values: ");
+			System.out.println("**********************");
+			for (Field field : fields) {
+				System.out.println("Field Name: " + field.getName());
+				System.out.println("Field Key: " + field.getKey());
+				System.out.println("Field Type: " + field.getType());
+				System.out.println("----------");
+			}
+			System.out.println("**********************");
+			
+			System.out.println("Printing the order of Stages: ");
+			System.out.println(pipeLine.getStageOrder());
+			stageOrder = pipeLine.getStageOrder();
+			System.out.println("**********************");
+			
+			System.out.println("Printing all the stages and creating a Stage ArrayList (maintaining Stage Order): ");
+			System.out.println("**********************");
+			int numOfStages = stageOrder.size();
+			for (int i=0; i<numOfStages; i++) {
+				stageList.add(i, allStages.get(stageOrder.get(i)));
+				System.out.println("Item [" +i+"] of StageList: " + stageList.get(i));
+				System.out.println("----------");
+			}
+			System.out.println("**********************");
+			
+			Calendar lastUpdateTime = pipeLine.getLastUpdatedTimestamp();
+			System.out.println("Printing Last Updated Time: ");
+			System.out.println(lastUpdateTime.getTime());
+			System.out.println(lastUpdateTime.getTimeInMillis());
+			System.out.println("**********************");
+			
+			System.out.println("\t**********************");
+			System.out.println("\t GETTING DATA FROM BOX(ES)");
+			System.out.println("\t**********************");
+			
+			boxList = streakAPI.getBoxesInPipeline(pipelineKey);
+			System.out.println("Number of Boxes in " + pipeLine.getName() 
+					+"Pipeline: " + boxList.size());
+			for (Box box : boxList) {
+				System.out.println("Box Name: " + box.getName());
+				System.out.println("Box Key: " + box.getKey());
+				System.out.println("Box Name: " + box.getName());
+				System.out.println("Box Last-updated time: " + box.getLastUpdatedTimestamp().getTime());
+				System.out.println("Box Fields: " + box.getFields());
+				System.out.println("Box Notes: " + box.getNotes());
+			}
+			
+			
 		} catch (NoValidObjectsReturned e) {
 			e.printStackTrace();
 		}
