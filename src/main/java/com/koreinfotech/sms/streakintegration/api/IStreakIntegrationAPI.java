@@ -9,6 +9,7 @@ import java.util.Map;
 import com.streakapi.crm.api.IStreakAPI;
 import com.streakapi.crm.datatype.Box;
 import com.streakapi.crm.datatype.Field;
+import com.streakapi.crm.datatype.Fields;
 import com.streakapi.crm.datatype.Pipeline;
 import com.streakapi.crm.datatype.Stage;
 import com.streakapi.crm.datatype.Stages;
@@ -33,6 +34,8 @@ public class IStreakIntegrationAPI {
 		
 		//Boxes
 		List<Box> boxList = null;
+		Box boxObj = null;
+		Fields boxFields = null;
 		
 		IStreakAPI streakAPI = new StreakAPIImpl(streakKey);
 		try {
@@ -101,6 +104,24 @@ public class IStreakIntegrationAPI {
 				System.out.println("----------");
 			}
 			
+			boxObj = streakAPI.getBox(boxKey);
+			System.out.println("Getting values for Box : " + boxObj.getName());
+			System.out.println("----------");
+			System.out.println("Box Name: " + boxObj.getName());
+			System.out.println("Box Key: " + boxObj.getKey());
+			System.out.println("Box Name: " + boxObj.getName());
+			System.out.println("Box Last-updated time: " + boxObj.getLastUpdatedTimestamp().getTime());
+			System.out.println("Box Fields: " + boxObj.getFields());
+			boxFields = boxObj.getFields();
+			System.out.println("Box Notes: " + boxObj.getNotes());
+			System.out.println("Box Stage Key: " + boxObj.getStageKey());
+			System.out.println("Box Stage Name: " + stageMap.get(boxObj.getStageKey()));
+			System.out.println("----------");
+			
+			System.out.println("Printing the field values for Box : " + boxObj.getName());
+			for (Field field : fields) {
+				System.out.println(field.getKey());
+			}
 			
 		} catch (NoValidObjectsReturned e) {
 			e.printStackTrace();
