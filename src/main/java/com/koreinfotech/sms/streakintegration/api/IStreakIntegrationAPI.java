@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.streakapi.crm.api.IStreakAPI;
 import com.streakapi.crm.datatype.Box;
+import com.streakapi.crm.datatype.BoxField;
 import com.streakapi.crm.datatype.Field;
 import com.streakapi.crm.datatype.Fields;
 import com.streakapi.crm.datatype.Pipeline;
@@ -120,7 +121,10 @@ public class IStreakIntegrationAPI {
 			
 			System.out.println("Printing the field values for Box : " + boxObj.getName());
 			for (Field field : fields) {
-				System.out.println(field.getKey());
+				System.out.println	( "Field Key: "+ field.getKey()
+									+ "; Field Type: " + field.getType()
+									+ "; Field Name: " + field.getName()
+									+ ";\nField value: " + boxFields.getAllFields().get(field.getKey()));
 			}
 			
 		} catch (NoValidObjectsReturned e) {
