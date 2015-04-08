@@ -23,6 +23,7 @@ public class IStreakIntegrationAPI {
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args){
 		String streakKey = "";
+//		String pipelineKey = "";
 		String pipelineKey = "";
 		String boxKey = "";
 		
@@ -60,9 +61,9 @@ public class IStreakIntegrationAPI {
 			System.out.println("Printing all the field values: ");
 			System.out.println("**********************");
 			for (Field field : fields) {
-				System.out.println("Field Name: " + field.getName());
-				System.out.println("Field Key: " + field.getKey());
-				System.out.println("Field Type: " + field.getType());
+				System.out.println("Field Name: '" + field.getName()+"'");
+				System.out.println("Field Key: '" + field.getKey()+"'");
+				System.out.println("Field Type: '" + field.getType()+"'");
 				System.out.println("----------");
 			}
 			System.out.println("**********************");
@@ -99,13 +100,32 @@ public class IStreakIntegrationAPI {
 			for (Box box : boxList) {
 				System.out.println("Box Name: " + box.getName());
 				System.out.println("Box Key: " + box.getKey());
-				System.out.println("Box Name: " + box.getName());
 				System.out.println("Box Last-updated time: " + box.getLastUpdatedTimestamp().getTime());
 //				System.out.println("Box Fields: " + box.getFields());
 				boxFields = box.getFields();
 				System.out.println("Box Notes: " + box.getNotes());
 				System.out.println("Box Stage Key: " + box.getStageKey());
 				System.out.println("Box Stage Name: " + stageMap.get(box.getStageKey()));
+				
+				for (Field field : fields) {
+					System.out.print( "Field Key: '" + field.getKey()+"'"
+										+ "; Field Type: '" + field.getType()+"'"
+										+ "; Field Name: '" + field.getName()+"'");
+//										+ ";\nField value: " + boxFields.getAllFields().get(field.getKey()));
+					if (field.getType() == TYPE.PERSON) {
+						personMap = (ArrayList<HashMap<String, String>>) boxFields.getAllFields().get(field.getKey());
+						if (personMap.size() > 0) {
+							System.out.println("Field Value (Showing Only PERSON name): '"+ personMap.get(0).get("fullName")+"'");
+						}
+						else {
+							System.out.println("Field Value is empty/unassigned");
+						}
+					}
+					else {
+						System.out.println("Field value: " + boxFields.getAllFields().get(field.getKey()));
+					}
+					System.out.println("----------");
+				}
 				
 			/*	
 			 * System.out.println("Printing the values of the fields: ");
@@ -137,7 +157,7 @@ public class IStreakIntegrationAPI {
 			
 			System.out.println("Printing the field values for Box : " + boxObj.getName());
 			System.out.println("----------");
-			for (Field field : fields) {
+/*			for (Field field : fields) {
 				System.out.print	( "Field Key: "+ field.getKey()
 									+ "; Field Type: " + field.getType()
 									+ "; Field Name: " + field.getName());
@@ -151,7 +171,7 @@ public class IStreakIntegrationAPI {
 				}
 				System.out.println("----------");
 			}
-			
+			*/
 		} catch (NoValidObjectsReturned e) {
 			e.printStackTrace();
 		}
