@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.streakapi.crm.api.IStreakAPI;
 import com.streakapi.crm.datatype.Box;
 import com.streakapi.crm.datatype.BoxField;
@@ -141,6 +142,7 @@ public class IStreakIntegrationAPI {
 				System.out.println("----------");
 			}
 			
+			//TODO must cater for JsonMappingException that could be thrown here...
 			boxObj = streakAPI.getBox(boxKey);
 			System.out.println("Getting values for Box : " + boxObj.getName());
 			System.out.println("----------");
