@@ -4,17 +4,20 @@
 	<groupId>com.streakintegration.api</groupId>
 	<version>0.0.1-SNAPSHOT</version>
 	<artifactId>StreakIntegrationAPI</artifactId>
-
 	<dependencies>
 		<dependency>
-			<groupId>StreakAPI</groupId>
-			<artifactId>ccom.streakapi.crm</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/resources/jstreak-1.1.RC0-jar-with-dependencies.jar</systemPath>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.3.8.Final</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
