@@ -9,8 +9,8 @@ import com.koreinfotech.sms.streakintegration.utils.HibernateUtils;
 public class ImplLeadTableDAO implements LeadTableDAO {
 
 	@Override
-	public boolean addLeadTable(LeadTable leadTable) {
-		System.out.println("Adding LeadTable: " + leadTable.getLeadName());
+	public boolean addLead(LeadTable leadTable) {
+		System.out.println("Adding a new Lead: " + leadTable.getLeadName());
 		Session session = HibernateUtils.openSession();
 		Transaction tx = session.beginTransaction();
 		session.saveOrUpdate(leadTable);

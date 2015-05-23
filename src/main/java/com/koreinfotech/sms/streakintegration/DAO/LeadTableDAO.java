@@ -8,6 +8,6 @@ public interface LeadTableDAO {
 	 * @param leadTable
 	 * @return
 	 */
-	public boolean addLeadTable(LeadTable leadTable);
-
+	public boolean addLead(LeadTable leadTable);
+	
 }

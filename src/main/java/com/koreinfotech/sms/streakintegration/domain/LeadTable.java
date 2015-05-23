@@ -2,20 +2,44 @@ package com.koreinfotech.sms.streakintegration.domain;
 
 import java.util.Date;
 
-public class LeadTable {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name="LeadTable")
+public class LeadTable {
+	@Id
+	@Column(name="leadtable_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int leadId;
+	@Column
 	private String streakBoxKey;
+	@Column
 	private String leadName;
+	@Column
 	private String courseName;
+	@Column
 	private String phone;
+	@Column
 	private String email;
+	@Column
 	private String notes;
+	@Column
 	private Date meetingOn;
+	@Column
 	private Date meetingTime;
+	@Column
 	private double dealSize;
+	@Column
 	private String assignedTo;
+	@Column
 	private Date lastUpdateTime;
+	
 	/**
 	 * @return the leadId
 	 */
@@ -192,6 +216,42 @@ public class LeadTable {
 		builder.append(lastUpdateTime);
 		builder.append("]");
 		return builder.toString();
+	}
+	/**
+	 * Constructor using the default fields (except for the Id)
+	 * @param streakBoxKey
+	 * @param leadName
+	 * @param courseName
+	 * @param phone
+	 * @param email
+	 * @param notes
+	 * @param meetingOn
+	 * @param meetingTime
+	 * @param dealSize
+	 * @param assignedTo
+	 * @param lastUpdateTime
+	 */
+	public LeadTable(String streakBoxKey, String leadName, String courseName,
+			String phone, String email, String notes, Date meetingOn,
+			Date meetingTime, double dealSize, String assignedTo,
+			Date lastUpdateTime) {
+		super();
+		this.streakBoxKey = streakBoxKey;
+		this.leadName = leadName;
+		this.courseName = courseName;
+		this.phone = phone;
+		this.email = email;
+		this.notes = notes;
+		this.meetingOn = meetingOn;
+		this.meetingTime = meetingTime;
+		this.dealSize = dealSize;
+		this.assignedTo = assignedTo;
+		this.lastUpdateTime = lastUpdateTime;
+	}
+	
+	//Default constructor for Hibernate
+	public LeadTable() {
+		super();
 	}
 	
 }
